@@ -1,5 +1,6 @@
 # local IDE relevant files
 .idea
+/out
 
 # local relevant files
 JavaExcersisess.iml
