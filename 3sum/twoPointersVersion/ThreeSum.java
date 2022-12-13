@@ -17,14 +17,17 @@ public class ThreeSum {
             int j = i+1;
             int k = nums.length-1;
             while(j < k) {
-                if (nums[i]+nums[j]+nums[k] < 0){
-                    j++;
+                if (j!=1 && nums[j] == nums[j-1] && j-1 != i) {j++;continue;}
+                if (k!=nums.length-1 && nums[k] == nums[k+1]) {k--;continue;}
+                if (nums[i]+nums[j]+nums[k] == 0) {
+                    temp.add(nums[i]);temp.add(nums[j]);temp.add(nums[k]);
+                    retval.add(temp);
+                    temp = new ArrayList();
                 }else if (nums[i]+nums[j]+nums[k] > 0){
                     k--;
-                }else{
-                    temp.add(nums[i]);temp.add(nums[j]);temp.add(nums[k]);
-                    retval.add(temp); break;
+                    continue;
                 }
+                j++;
             }
         }
         return retval;
