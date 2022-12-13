@@ -12,17 +12,16 @@ public class ThreeSum {
         List<List<Integer>> retval = new ArrayList<List<Integer>>();
         Arrays.sort(nums);
         for (int i=0; i < nums.length-1; i++) {
-            List<Integer> temp = new ArrayList();
-            if (i!=0 && nums[i] == nums[i-1]) continue;
+            while (i!=0 && nums[i] == nums[i-1] && i < nums.length-1) i++;
             int j = i+1;
             int k = nums.length-1;
             while(j < k) {
                 if (j!=1 && nums[j] == nums[j-1] && j-1 != i) {j++;continue;}
                 if (k!=nums.length-1 && nums[k] == nums[k+1]) {k--;continue;}
                 if (nums[i]+nums[j]+nums[k] == 0) {
+                    List<Integer> temp = new ArrayList();
                     temp.add(nums[i]);temp.add(nums[j]);temp.add(nums[k]);
                     retval.add(temp);
-                    temp = new ArrayList();
                 }else if (nums[i]+nums[j]+nums[k] > 0){
                     k--;
                     continue;
