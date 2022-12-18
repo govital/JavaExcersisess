@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Permutations {
 
     public static void main(String[] args) {
-        permute(new int[]{1,2,3});
+        permuteDfs(new int[]{1,2,3});
     }
 
     public static List<List<Integer>> permute(int[] nums) {
@@ -44,6 +44,34 @@ public class Permutations {
             }
         }
         return paths;
+    }
+
+    public static List<List<Integer>> permuteDfs(int[] nums) {
+        List<List<Integer>> paths = new ArrayList();
+        List<Integer> path = new ArrayList();
+        boolean[] visited = new boolean[nums.length];
+        dfs(nums, visited, path, paths);
+        System.out.println(paths);
+        return paths;
+    }
+
+
+    public static void dfs(int[] nums, boolean[] visited, List<Integer> path, List<List<Integer>> paths) {
+
+        if (path.size() == nums.length) {
+            paths.add(new ArrayList(path));
+            return;
+        }
+
+        for (int i=0; i < nums.length; i++) {
+            if (visited[i] == false) {
+                visited[i] = true;
+                path.add(nums[i]);
+                dfs(nums, visited, path, paths);
+                path.remove(path.size()-1);
+                visited[i] = false;
+            }
+        }
     }
 
 
